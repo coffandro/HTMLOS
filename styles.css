@@ -1,0 +1,69 @@
+body {
+    overflow: hidden;
+}
+
+.window {
+    position: absolute;
+    z-index: 9;
+    background-color: #f1f1f1;
+    text-align: center;
+    border: 5px solid #d3d3d3;
+    animation: slide-in 0.7s both;
+}
+
+.window.hidden {
+    transform: scale(0, 0);
+}
+
+.CloseButton {
+    background: none;
+    color: white;
+    border: none;
+    float: right;
+    margin-left: 20px;
+}
+
+.CloseButton:hover {
+    color: grey;
+    cursor: pointer;
+}
+
+.BarIcon {
+    margin-right: 5px;
+}
+
+.TaskIcon {
+    font-size: 50px;
+}
+
+.Bar {
+    display: block;
+    text-align: left;
+    float: none;
+}
+
+#TopWindow {
+    z-index: 11;
+}
+
+#TaskBar {
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:50px;
+    margin-bottom: 10px;
+}
+
+#TopWindow .windowheader{
+    z-index: 12;
+}
+
+.windowheader {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    cursor: move;
+    z-index: 10;
+    background-color: #2196F3;
+    color: #fff;
+}
