@@ -7,7 +7,7 @@
 <body>
 <div id="windows">
     <div class="window">
-      <div class="windowheader"><i class="BarIcon fa-solid fa-gear"></i>Settings</div>
+      <div class="windowheader"><i class="BarIcon fa-solid fa-gear"></i><span>Settings</span></div>
       <p>Move</p>
       <p>this</p>
       <p>DIV</p>
@@ -15,11 +15,49 @@
 
     <br>
 
-    <div class="window hidden">
-        <div class="windowheader"><i class="BarIcon fa-solid fa-terminal"></i> Terminal</div>
-        <p>Move</p>
-        <p>this</p>
-        <p>windows2</p>
+    <div class="window locked hidden">
+        <div class="windowheader"><i class="BarIcon fa-solid fa-terminal"></i><span>Terminal</span></div>
+        <div id="LogContainer" class="grid-container">
+            <div id="log"></div>
+            <input type="text" id="box">
+            <button style="width: 2cm;height: 1cm;" id="execute">Execute</button>
+        </div>
+        <script>
+            if (typeof console  != "undefined") 
+                if (typeof console.log != 'undefined')
+                    console.olog = console.log;
+                else
+                    console.olog = function() {};
+
+            console.log = function(message) {
+                console.olog(message);
+                TextLabel = document.createElement("p");
+                TextLabel.innerText = message
+                document.getElementById('log').appendChild(TextLabel);
+            };
+            console.error = console.debug = console.info =  console.log
+
+            document.getElementById("box").addEventListener("keypress", e => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                    try {
+                        document.getElementById("box").value = document.getElementById("box").value.replace("/\n$/", "")
+                        eval(document.getElementById('box').value);
+                    } catch(err) {
+                        // Pass the error to the overridden error log handler
+                        console.error(err);
+                    }
+                }
+            });
+
+            document.getElementById('execute').onclick = function() {
+                try {
+                    eval(document.getElementById('box').value);
+                } catch(err) {
+                    // Pass the error to the overridden error log handler
+                    console.error(err);
+                }
+            }
+        </script>
     </div>
 </div>
 <nav id="TaskBar"></nav>
