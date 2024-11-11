@@ -5,21 +5,27 @@
     <script id="Font-Awesome" src="https://kit.fontawesome.com/5c072ddc8a.js" crossorigin="anonymous"></script>
 </head>
 <body>
+<div class="bg">
 <div id="windows">
     <div class="window">
-      <div class="windowheader"><i class="BarIcon fa-solid fa-gear"></i><span>Settings</span></div>
+      <div class="windowheader"><i class="BarIcon fa-solid fa-gear"></i></div>
       <p>Move</p>
       <p>this</p>
       <p>DIV</p>
     </div>
 
-    <div class="window">
-        <div class="windowheader"><i class="BarIcon fa-solid fa-globe"></i><span>Browser</span></div>
-        <!--<button><i class="fa-solid fa-arrow-left"></i></button>
-        <button><i class="fa-solid fa-arrow-right"></i></button>-->
-        <button><i onclick="RefreshPage()" class="fa-solid fa-arrow-rotate-left"></i></button>
-        <input type="text" id="SearchBar">
-        <br>
+    <!--<div class="window">
+        <div class="windowheader"><i class="BarIcon fa-solid fa-globe"></i>
+        <input placeholder="example.com" type="text" onclick="this.select()" id="SearchBar">
+    </div>
+        <style>
+            #SearchBar {
+                padding: 0 0 2px 10px;
+                background-color: #ebebeb;
+                border: none;
+                border-radius: 10px;
+            }
+        </style>
         <embed id="BrowserFrame" src="https://www.example.com/" style="width: 100%; height: 100%;">
         <script>
             Box = document.getElementById("SearchBar");
@@ -61,10 +67,10 @@
                 }
             }
         </script>
-    </div>
+    </div>-->
 
     <div class="window locked hidden">
-        <div class="windowheader"><i class="BarIcon fa-solid fa-terminal"></i><span>Terminal</span></div>
+        <div class="windowheader"><i class="BarIcon fa-solid fa-terminal"></i></div>
         <div id="LogContainer" class="grid-container">
             <div id="log"></div>
             <input type="text" id="box">
@@ -109,6 +115,7 @@
     </div>
 </div>
 <nav id="TaskBar"></nav>
+</div>
 <script src="scripts.js"></script>
 </body>
 </html>

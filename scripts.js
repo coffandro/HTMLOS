@@ -6,7 +6,7 @@ for (let i = 0; i < windows.length; i++) {
   CreateWindowDecs(windows[i]);
   //windows[i].addEventListener("click", ChangeTopWindow);
   dragElement(windows[i]);
-  
+
   TaskBar = document.getElementById("TaskBar");
   icon = windows[i].children[0].children[0];
   icon = icon.cloneNode(true)
@@ -19,6 +19,16 @@ for (let i = 0; i < windows.length; i++) {
 
 function HideWindow(Window) {
   Window.classList.toggle("hidden")
+  if (!Window.classList.contains("hidden")) {
+    var XPos = (document.documentElement.clientWidth/2)-(Window.offsetWidth/2);
+    var YPos = (document.documentElement.clientHeight/2)-(Window.offsetHeight);
+    var posvar = "top:" + YPos + "px; left:" + XPos + "px";
+    console.log(posvar);
+    Window.setAttribute("style", posvar);
+
+    topwindow = Window;
+    ChangeTopWindow();
+  }
 }
 
 function CreateWindowDecs(elmnt) {
@@ -28,7 +38,7 @@ function CreateWindowDecs(elmnt) {
   BarDiv.className = "Bar"
   CloseButton = document.createElement('button');
   CloseIcon = document.createElement("i");
-  CloseIcon.className = "fa-solid fa-minus";
+  CloseIcon.className = "fa-solid fa-x";
   CloseButton.className = "CloseButton";
   CloseButton.appendChild(CloseIcon);
   CloseButton.onclick =  function(){HideWindow(elmnt)};
@@ -40,6 +50,7 @@ function dragElement(elmnt) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
   if (elmnt.children[0]) {
     /* if present, the header is where you move the DIV from:*/
+    
     elmnt.children[0].onmousedown = dragMouseDown;
   } else {
     /* otherwise, move the DIV from anywhere inside the DIV:*/
@@ -71,6 +82,7 @@ function dragElement(elmnt) {
 
     topwindow = elmnt;
     ChangeTopWindow();
+    return true;
   }
 
   function closeDragElement() {
